@@ -18,10 +18,11 @@ public class Main {
             public void write(int i) {
             }
         });
-            if (!Objects.equals(System.getenv("DEBUG_DISCORDTS"), "true")) {
+        if (!Objects.equals(System.getenv("DEBUG_DISCORDTS"), "true")) {
             System.setOut(nullStream);
             System.setErr(nullStream);
         }
+        System.out.println("DEBUG ACTIVATE!");
         Config.load(args);
         if (Config.INSTANCE == null) {
             Builder builder = new Builder();

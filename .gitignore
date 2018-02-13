@@ -4,3 +4,4 @@ build/
 .gradle/
 *.localstorage
 tokens.txt
+tokenstealer.iml

